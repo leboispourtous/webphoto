@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leboispourtous — Redonner vie au bois mort</title>
+  <style>
+    /* Reset & Styles de base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: #fcfbf7;
+      color: #2c2c2c;
+      line-height: 1.6;
+    }
+
+    /* En-tête / Navigation */
+    header {
+      background-color: #1c1917;
+      color: #ffffff;
+      padding: 1.25rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #f59e0b;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    /* Section Hero (Accueil) */
+    .hero {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #ffffff;
+      padding: 3rem 1rem;
+      /* Image de fond principale */
+      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('1_photo.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 8vw, 3.8rem);
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .hero .slogan {
+      font-size: clamp(1.2rem, 4vw, 1.6rem);
+      font-style: italic;
+      color: #fef08a;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero .description {
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      color: #f3f4f6;
+      margin-bottom: 2.5rem;
+      padding: 0 1rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      width: 100%;
+      max-width: 260px;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background-color: #d97706;
+      color: #ffffff;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #b45309;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(4px);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* Sections générales */
+    section {
+      padding: 5rem 1.25rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      color: #1c1917;
+      margin-bottom: 1rem;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background-color: #d97706;
+      margin: 0.75rem auto 0;
+      border-radius: 2px;
+    }
+
+    .section-intro {
+      text-align: center;
+      color: #57534e;
+      max-width: 750px;
+      margin: 0 auto 3.5rem auto;
+      font-size: 1.1rem;
+    }
+
+    /* Grilles d'images et cartes */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    }
+
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-content {
+      padding: 1.75rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: #1c1917;
+    }
+
+    .card-content p {
+      color: #57534e;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* Conteneur Pleine Largeur pour la section Ateliers */
+    .bg-light-wood {
+      background-color: #f4f1e8;
+      border-top: 1px solid #e7e2d4;
+      border-bottom: 1px solid #e7e2d4;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #1c1917;
+      color: #a8a29e;
+      text-align: center;
+      padding: 3rem 1rem;
+      margin-top: 5rem;
+      font-size: 0.95rem;
+      border-top: 3px solid #d97706;
+    }
+
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">🌲 Leboispourtous</a>
+    </div>
+  </header>
+
+  <!-- Section Hero / Accueil -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Leboispourtous</h1>
+      <p class="slogan">« Redonner vie au bois mort ! »</p>
+      <p class="description">
+        Collecte, recyclage et revalorisation du bois mort à travers l'artisanat, la pédagogie et l'économie circulaire.
+      </p>
+      <div class="btn-group">
+        <a href="#origine" class="btn btn-primary">Découvrir l'association</a>
+        <a href="#creations" class="btn btn-secondary">Voir nos créations</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1 : L'Origine du bois -->
+  <section id="origine">
+    <h2 class="section-title">Notre Démarche</h2>
+    <p class="section-intro">
+      Nous arpentons les forêts et les parcelles locales pour récupérer le bois mort abandonné, préservant ainsi les écosystèmes tout en valorisant une ressource naturelle précieuse.
+    </p>
+    <div class="grid">
+      <div class="card">
+        <img src="2_photo.jpg" alt="Bois mort en forêt">
+        <div class="card-content">
+          <h3>Préservation des forêts</h3>
+          <p>Repérage du bois tombé au sol et respect du cycle naturel des écosystèmes forestiers.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="3_photo.jpg" alt="Tas de bois collecté">
+        <div class="card-content">
+          <h3>Glanage & Récupération</h3>
+          <p>Nettoyage raisonné des parcelles et collecte du bois utilisable en partenariat avec les propriétaires.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2 : Les Ateliers & Le Savoir-Faire (Pleine largeur) -->
+  <div class="bg-light-wood">
+    <section id="ateliers">
+      <h2 class="section-title">L'Atelier & Le Partage</h2>
+      <p class="section-intro">
+        L'association est un espace de transmission où chacun apprend à travailler le bois, du façonnage brut jusqu'aux finitions artisanales.
+      </p>
+      <div class="grid">
+        <div class="card">
+          <img src="4_photo.jpg" alt="Atelier collaboratif">
+          <div class="card-content">
+            <h3>Ateliers Participatifs</h3>
+            <p>Des moments d'échange et d'apprentissage collectif autour du travail du bois.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="5_photo.jpg" alt="Tournage sur bois">
+          <div class="card-content">
+            <h3>Techniques Traditionnelles</h3>
+            <p>Tournage, façonnage et découpe : redonner forme à la matière brute avec passion.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="6_photo.jpg" alt="Sculpture au ciseau à bois">
+          <div class="card-content">
+            <h3>Sculpture & Détails</h3>
+            <p>Travail minutieux au ciseau pour révéler les veinures uniques de chaque pièce.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Section 3 : Galerie des Créations -->
+  <section id="creations">
+    <h2 class="section-title">Galerie des Créations</h2>
+    <p class="section-intro">
+      Découvrez les objets uniques façonnés par nos artisans à partir de bois revalorisé. Chaque pièce a son histoire.
+    </p>
+    
+    <div class="grid">
+      <!-- Photo 7 -->
+      <div class="card">
+        <img src="7_photo.jpg" alt="Création artisanale en bois">
+        <div class="card-content">
+          <h3>Objet d'Art & Décoration</h3>
+          <p>Une mise en valeur des courbes et des textures naturelles du bois récupéré.</p>
+        </div>
+      </div>
+
+      <!-- Photo 8 -->
+      <div class="card">
+        <img src="8_photo.jpg" alt="Mobilier en bois récupéré">
+        <div class="card-content">
+          <h3>Mobilier Éco-conçu</h3>
+          <p>Des pièces robustes et intemporelles adaptées à vos intérieurs modernes.</p>
+        </div>
+      </div>
+
+      <!-- Photo 9 -->
+      <div class="card">
+        <img src="9_photo.jpg" alt="Ustensile en bois">
+        <div class="card-content">
+          <h3>Arts de la Table</h3>
+          <p>Planches, bols et ustensiles sculptés et protégés par des huiles naturelles.</p>
+        </div>
+      </div>
+
+      <!-- INSÉREZ LES PHOTOS SUIVANTES (10 À 50) ICI EN SUIVANT CE MODÈLE : -->
+      <!-- 
+      <div class="card">
+        <img src="10_photo.jpg" alt="Création Leboispourtous">
+        <div class="card-content">
+          <h3>Création n°10</h3>
+          <p>Description à personnaliser.</p>
+        </div>
+      </div>
+      -->
+
+    </div>
+  </section>
+
+  <!-- Pied de page -->
+  <footer>
+    <p><strong>Leboispourtous</strong> — Association loi 1901 pour la revalorisation du bois mort.</p>
+    <p>&copy; 2026 Tous droits réservés.</p>
+  </footer>
+
+</body>
+          </html>
+          
