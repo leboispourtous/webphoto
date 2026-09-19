@@ -1,1 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galerie Photos - Le Bois Pour Tous</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #fdfdfd; color: #333; }
+    header { background: #3a2e2b; color: #fff; text-align: center; padding: 25px 15px; }
+    header h1 { font-size: 1.8em; margin-bottom: 5px; }
+    .nav-bar { text-align: center; margin: 20px 0; }
+    .back-btn { display: inline-block; padding: 12px 24px; background: #8b5a2b; color: #fff; text-decoration: none; border-radius: 8px; font-weight: bold; }
+    .gallery-container { max-width: 1100px; margin: 0 auto; padding: 10px 15px 40px 15px; }
+    .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+    .photo-card { border-radius: 8px; overflow: hidden; box-shadow: 0 3px 8px rgba(0,0,0,0.1); background: #fff; }
+    .photo-card img { width: 100%; height: 150px; object-fit: cover; display: block; }
+    footer { background: #2c3e50; color: #fff; text-align: center; padding: 20px; font-size: 0.85em; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Galerie Photos Complète</h1>
+    <p>Le Bois Pour Tous</p>
+  </header>
+  <div class="gallery-container">
+    <div class="nav-bar">
+      <a href="index.html" class="back-btn">&larr; Retour à l'accueil</a>
+    </div>
+    <div class="photo-grid">
+      <script>
+        document.write(Array.from({length: 50}, (_, i) => `
+          <div class="photo-card">
+            <img src="${i + 1}.jpg" alt="Photo ${i + 1}" loading="lazy">
+          </div>
+        `).join(''));
+      </script>
+    </div>
+  </div>
+  <footer>
+    <p>&copy; Le Bois Pour Tous — Association à but non lucratif</p>
+  </footer>
+</body>
+</html>
 
