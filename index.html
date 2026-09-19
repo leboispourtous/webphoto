@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leboispourtous - Accueil</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1e140f;
+      color: #ffffff;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    header { padding: 20px 10px; background-color: #2c221e; }
+    h1 { font-size: 2em; color: #f4e8d1; margin-bottom: 5px; }
+    p.subtitle { color: #d1c2b5; font-style: italic; }
+    
+    .hero-container {
+      padding: 15px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .hero-img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+      border: 2px solid #8b5a2b;
+    }
+    
+    .btn-galerie {
+      display: inline-block;
+      margin: 20px auto;
+      padding: 15px 30px;
+      background: linear-gradient(145deg, #8b5a2b, #6e4620);
+      color: #ffffff;
+      font-size: 1.2em;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 30px;
+      border: 2px solid #d1c2b5;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      transition: transform 0.2s;
+    }
+    .btn-galerie:active { transform: scale(0.98); }
+
+    footer {
+      padding: 15px;
+      background-color: #140d0a;
+      font-size: 0.9em;
+      color: #a8988a;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Leboispourtous</h1>
+    <p class="subtitle">Redonner vie au bois mort !</p>
+  </header>
+
+  <main class="hero-container">
+    <!-- Image réservée exclusivement à l'accueil -->
+    <img src="1.jpg" alt="Accueil Leboispourtous" class="hero-img">
+    
+    <br>
+    <a href="galerie.html" class="btn-galerie">🖼️ Découvrir la Galerie Photos</a>
+  </main>
+
+  <footer>
+    <p>&copy; Leboispourtous — Tous droits réservés</p>
+  </footer>
+
+</body>
+</html>
+
