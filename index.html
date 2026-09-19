@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le Bois Pour Tous - Association à but non lucratif</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333333;
+      background-color: #fdfdfd;
+      overflow-x: hidden;
+    }
+
+    /* Conteneur principal flexbox pour tout faire tenir dans l'écran */
+    .app-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      justify-content: space-between;
+    }
+
+    /* En-tête / Bannière */
+    header {
+      background-color: #3a2e2b;
+      color: #ffffff;
+      text-align: center;
+      padding: 12px 10px;
+    }
+    header h1 {
+      font-size: 1.4em;
+      margin-bottom: 2px;
+    }
+    header p {
+      font-size: 0.9em;
+      color: #d1c2b5;
+    }
+
+    /* Section Présentation avec Fond d'écran (1.jpg) */
+    .presentation-section {
+      padding: 15px 10px;
+      text-align: center;
+      background: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), url('1.jpg') center/cover no-repeat;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .presentation-content {
+      max-width: 800px;
+    }
+    .presentation-section h2 {
+      color: #2c3e50;
+      font-size: 1.2em;
+      margin-bottom: 8px;
+    }
+    .intro-text {
+      font-size: 0.85em;
+      line-height: 1.35;
+      color: #2a2a2a;
+      margin-bottom: 12px;
+      text-align: justify;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    /* Onglet / Bouton en relief adaptatif */
+    .tab-container {
+      margin: 5px 0;
+    }
+    .tab-btn-relief {
+      display: inline-block;
+      padding: 12px 20px;
+      background: linear-gradient(145deg, #8b5a2b, #6e4620);
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 0.95em;
+      text-decoration: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 0 #4a2e15, 0 6px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Section Galerie Photos réduites */
+    .gallery-section {
+      padding: 10px 8px;
+      background-color: #f4f1ea;
+      border-top: 1px solid #e0dcd3;
+    }
+    .gallery-section h3 {
+      text-align: center;
+      font-size: 1em;
+      color: #2c3e50;
+      margin-bottom: 8px;
+    }
+    .photo-grid {
+      display: flex;
+      justify-content: space-around;
+      gap: 6px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .photo-card {
+      flex: 1;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      background: #ffffff;
+      text-align: center;
+    }
+    .photo-card img {
+      width: 100%;
+      height: 75px;
+      object-fit: cover;
+      display: block;
+    }
+    .photo-card .caption {
+      padding: 4px 2px;
+      font-size: 0.65em;
+      font-weight: 600;
+      color: #555;
+      line-height: 1.1;
+    }
+
+    /* Section Contact & Soutien compacte */
+    .contact-section {
+      text-align: center;
+      padding: 8px 10px;
+      background-color: #eae6df;
+      border-top: 1px solid #d8d3c9;
+      font-size: 0.8em;
+    }
+    .contact-section h3 {
+      color: #2c3e50;
+      font-size: 0.95em;
+      margin-bottom: 2px;
+    }
+    .contact-section a {
+      color: #8b5a2b;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    /* Pied de page */
+    footer {
+      background-color: #2c3e50;
+      color: #ffffff;
+      text-align: center;
+      padding: 8px 10px;
+      font-size: 0.7em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- En-tête -->
+    <header>
+      <h1>Le Bois Pour Tous</h1>
+      <p>Redonner vie au bois mort !</p>
+    </header>
+
+    <!-- Contenu Présentation -->
+    <main style="flex: 1; display: flex; flex-direction: column;">
+      <section class="presentation-section">
+        <div class="presentation-content">
+          <h2>Nos Objectifs, Enjeux & Valeurs</h2>
+          <p class="intro-text">
+            L'association <strong>Le Bois Pour Tous</strong> collecte et revalorise le bois mort. Nous allions la préservation des forêts à la création artisanale pour promouvoir l'économie circulaire et sensibiliser le public.
+          </p>
+
+          <div class="tab-container">
+            <a href="galerie.html" class="tab-btn-relief">
+              Voir la galerie complète (50 photos) &rarr;
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Galerie 3 photos réduites alignées -->
+      <section class="gallery-section">
+        <h3>Aperçu de nos actions</h3>
+        <div class="photo-grid">
+          <div class="photo-card">
+            <img src="18.jpg" alt="Création artisanale">
+            <p class="caption">Revalorisation</p>
+          </div>
+          <div class="photo-card">
+            <img src="7.jpg" alt="Collecte en forêt">
+            <p class="caption">Collecte</p>
+          </div>
+          <div class="photo-card">
+            <img src="9.jpg" alt="Sensibilisation">
+            <p class="caption">Sensibilisation</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Contact & Donations -->
+    <section class="contact-section">
+      <h3>Contact & Soutien</h3>
+      <p style="margin-bottom: 2px;">
+        <a href="mailto:leboispourtous@gmail.com">leboispourtous@gmail.com</a>
+      </p>
+      <p style="color: #555;">
+        Soutenez l'association en faisant un don.
+      </p>
+    </section>
+
+    <!-- Pied de page -->
+    <footer>
+      <p style="margin-bottom: 2px;">&copy; le bois pour tous — association à but non lucratif</p>
+      <p style="color: #bdc3c7;">
+        le président : letellier &nbsp;|&nbsp; le secrétaire général : tronoy
+      </p>
+    </footer>
+  </div>
+
+</body>
+</html>
+
