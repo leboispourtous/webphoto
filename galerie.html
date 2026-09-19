@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Galerie - Leboispourtous</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%; height: 100%; overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #2c221e; color: #ffffff;
+      display: flex; flex-direction: column;
+    }
+    header { background-color: #1e140f; text-align: center; padding: 6px; flex-shrink: 0; }
+    header h1 { font-size: 1.2em; }
+
+    .nav-tabs {
+      display: flex; justify-content: space-between; gap: 6px;
+      padding: 6px; background-color: #1e140f;
+      border-bottom: 2px solid #3a2b22; flex-shrink: 0;
+    }
+    .btn-nav {
+      flex: 1; padding: 8px 2px;
+      background: linear-gradient(145deg, #8b5a2b, #6e4620);
+      color: #ffffff; font-weight: bold; font-size: 0.85em;
+      text-align: center; text-decoration: none;
+      border: 2px solid #d1c2b5; border-radius: 6px;
+      cursor: pointer;
+    }
+    .btn-nav.disabled {
+      opacity: 0.25; pointer-events: none; border-color: #444; background: #44342a;
+    }
+
+    main { flex: 1; padding: 4px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 4px; width: 100%; height: 100%;
+      max-width: 450px; margin: 0 auto;
+    }
+
+    .photo-card {
+      background: #ffffff; border-radius: 4px;
+      overflow: hidden; width: 100%; height: 100%;
+    }
+    .photo-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    footer {
+      background-color: #140d0a; color: #ffffff;
+      text-align: center; padding: 5px; font-size: 0.75em; flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Galerie Photos</h1>
+  </header>
+
+  <div class="nav-tabs">
+    <a href="index.html" class="btn-nav">&larr; Accueil</a>
+    <button id="btn-prev" class="btn-nav" onclick="changerPage(-1)">&larr; Précédent</button>
+    <button id="btn-next" class="btn-nav" onclick="changerPage(1)">Suivant &rarr;</button>
+  </div>
+
+  <main>
+    <div class="photo-grid" id="grid"></div>
+  </main>
+
+  <footer>
+    <p>&copy; leboispourtous — page <span id="page-num">1</span> / <span id="page-total">8</span></p>
+  </footer>
+
+  <script>
+    var photos = [
+      "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "8.jpg",
+      "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "16.jpg",
+      "17.jpg", "18.jpg", "19.jpg", "20.jpg", "21.jpg", "22.jpg",
+      "23.jpg", "24.jpg", "25.jpg", "26.jpg", "27.jpg", "28.jpg",
+      "29.jpg", "30.jpg", "31.jpg", "32.jpg", "33.jpg", "34.jpg",
+      "35.jpg", "36.jpg", "37.jpg", "38.jpg", "39.jpg", "40.jpg",
+      "41.jpg", "42.jpg", "43.jpg", "44.jpg", "45.jpg", "46.jpg",
+      "47.jpg", "48.jpg", "49.jpg", "50.jpg"
+    ];
+
+    var photosParPage = 6;
+    var pageActuelle = 1;
+    var totalPages = Math.ceil(photos.length / photosParPage);
+
+    function afficherGalerie() {
+      var grid = document.getElementById("grid");
+      grid.innerHTML = "";
+
+      var debut = (pageActuelle - 1) * photosParPage;
+      var fin = debut + photosParPage;
+      var photosPage = photos.slice(debut, fin);
+
+      for (var i = 0; i < photosPage.length; i++) {
+        var src = photosPage[i];
+        var card = document.createElement("div");
+        card.className = "photo-card";
+        card.innerHTML = '<img src="' + src + '" alt="Photo ' + src + '">';
+        grid.appendChild(card);
+      }
+
+      document.getElementById("btn-prev").classList.toggle("disabled", pageActuelle === 1);
+      document.getElementById("btn-next").classList.toggle("disabled", pageActuelle === totalPages);
+
+      document.getElementById("page-num").textContent = pageActuelle;
+      document.getElementById("page-total").textContent = totalPages;
+    }
+
+    function changerPage(direction) {
+      if (pageActuelle + direction >= 1 && pageActuelle + direction <= totalPages) {
+        pageActuelle += direction;
+        afficherGalerie();
+      }
+    }
+
+    afficherGalerie();
+  </script>
+
+</body>
+</html>
+
