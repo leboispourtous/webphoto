@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Galerie - Leboispourtous</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #2c221e; color: #ffffff;
+      display: flex; flex-direction: column;
+    }
+    header {
+      background-color: #1e140f;
+      text-align: center; padding: 8px 5px; flex-shrink: 0;
+    }
+    header h1 { font-size: 1.4em; }
+
+    .nav-tabs {
+      display: flex; justify-content: space-between; gap: 6px;
+      padding: 8px; background-color: #1e140f;
+      border-bottom: 2px solid #3a2b22; flex-shrink: 0;
+    }
+    .btn-nav {
+      flex: 1; padding: 10px 2px;
+      background: linear-gradient(145deg, #8b5a2b, #6e4620);
+      color: #ffffff; font-weight: bold; font-size: 0.9em;
+      text-align: center; text-decoration: none;
+      border: 2px solid #d1c2b5; border-radius: 8px;
+      cursor: pointer;
+    }
+    .btn-nav.disabled, .btn-nav:disabled {
+      opacity: 0.25; cursor: not-allowed; border-color: #444; background: #44342a;
+    }
+
+    main {
+      flex: 1; padding: 6px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Grille de 6 photos (2 colonnes x 3 lignes) */
+    .photo-grid {
+      display: none;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 6px; width: 100%; height: 100%;
+      max-width: 500px; margin: 0 auto;
+    }
+    .photo-grid.active { display: grid; }
+
+    .photo-card {
+      background: #ffffff; border-radius: 6px;
+      overflow: hidden; width: 100%; height: 100%;
+    }
+    .photo-card img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+
+    footer {
+      background-color: #140d0a; color: #ffffff;
+      text-align: center; padding: 6px; font-size: 0.8em; flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Galerie Photos</h1>
+  </header>
+
+  <div class="nav-tabs">
+    <a href="index.html" class="btn-nav">&larr; Accueil</a>
+    <button id="btn-prev" class="btn-nav" onclick="changePage(-1)">&larr; Précédent</button>
+    <button id="btn-next" class="btn-nav" onclick="changePage(1)">Suivant &rarr;</button>
+  </div>
+
+  <main>
+    <!-- PAGE 1 (6 photos) -->
+    <div id="page-1" class="photo-grid active">
+      <div class="photo-card"><img src="2.jpg" alt="Photo 2"></div>
+      <div class="photo-card"><img src="3.jpg" alt="Photo 3"></div>
+      <div class="photo-card"><img src="4.jpg" alt="Photo 4"></div>
+      <div class="photo-card"><img src="5.jpg" alt="Photo 5"></div>
+      <div class="photo-card"><img src="6.jpg" alt="Photo 6"></div>
+      <div class="photo-card"><img src="8.jpg" alt="Photo 8"></div>
+    </div>
+
+    <!-- PAGE 2 (6 photos) -->
+    <div id="page-2" class="photo-grid">
+      <div class="photo-card"><img src="10.jpg" alt="Photo 10"></div>
+      <div class="photo-card"><img src="11.jpg" alt="Photo 11"></div>
+      <div class="photo-card"><img src="12.jpg" alt="Photo 12"></div>
+      <div class="photo-card"><img src="13.jpg" alt="Photo 13"></div>
+      <div class="photo-card"><img src="14.jpg" alt="Photo 14"></div>
+      <div class="photo-card"><img src="16.jpg" alt="Photo 16"></div>
+    </div>
+
+    <!-- PAGE 3 (6 photos) -->
+    <div id="page-3" class="photo-grid">
+      <div class="photo-card"><img src="17.jpg" alt="Photo 17"></div>
+      <div class="photo-card"><img src="18.jpg" alt="Photo 18"></div>
+      <div class="photo-card"><img src="19.jpg" alt="Photo 19"></div>
+      <div class="photo-card"><img src="20.jpg" alt="Photo 20"></div>
+      <div class="photo-card"><img src="21.jpg" alt="Photo 21"></div>
+      <div class="photo-card"><img src="22.jpg" alt="Photo 22"></div>
+    </div>
+
+    <!-- PAGE 4 (6 photos) -->
+    <div id="page-4" class="photo-grid">
+      <div class="photo-card"><img src="23.jpg" alt="Photo 23"></div>
+      <div class="photo-card"><img src="24.jpg" alt="Photo 24"></div>
+      <div class="photo-card"><img src="25.jpg" alt="Photo 25"></div>
+      <div class="photo-card"><img src="26.jpg" alt="Photo 26"></div>
+      <div class="photo-card"><img src="27.jpg" alt="Photo 27"></div>
+      <div class="photo-card"><img src="28.jpg" alt="Photo 28"></div>
+    </div>
+
+    <!-- PAGE 5 (6 photos) -->
+    <div id="page-5" class="photo-grid">
+      <div class="photo-card"><img src="29.jpg" alt="Photo 29"></div>
+      <div class="photo-card"><img src="30.jpg" alt="Photo 30"></div>
+      <div class="photo-card"><img src="31.jpg" alt="Photo 31"></div>
+      <div class="photo-card"><img src="32.jpg" alt="Photo 32"></div>
+      <div class="photo-card"><img src="33.jpg" alt="Photo 33"></div>
+      <div class="photo-card"><img src="34.jpg" alt="Photo 34"></div>
+    </div>
+
+    <!-- PAGE 6 (6 photos) -->
+    <div id="page-6" class="photo-grid">
+      <div class="photo-card"><img src="35.jpg" alt="Photo 35"></div>
+      <div class="photo-card"><img src="36.jpg" alt="Photo 36"></div>
+      <div class="photo-card"><img src="37.jpg" alt="Photo 37"></div>
+      <div class="photo-card"><img src="38.jpg" alt="Photo 38"></div>
+      <div class="photo-card"><img src="39.jpg" alt="Photo 39"></div>
+      <div class="photo-card"><img src="40.jpg" alt="Photo 40"></div>
+    </div>
+
+    <!-- PAGE 7 (6 photos) -->
+    <div id="page-7" class="photo-grid">
+      <div class="photo-card"><img src="41.jpg" alt="Photo 41"></div>
+      <div class="photo-card"><img src="42.jpg" alt="Photo 42"></div>
+      <div class="photo-card"><img src="43.jpg" alt="Photo 43"></div>
+      <div class="photo-card"><img src="44.jpg" alt="Photo 44"></div>
+      <div class="photo-card"><img src="45.jpg" alt="Photo 45"></div>
+      <div class="photo-card"><img src="46.jpg" alt="Photo 46"></div>
+    </div>
+
+    <!-- PAGE 8 (4 photos restantes) -->
+    <div id="page-8" class="photo-grid">
+      <div class="photo-card"><img src="47.jpg" alt="Photo 47"></div>
+      <div class="photo-card"><img src="48.jpg" alt="Photo 48"></div>
+      <div class="photo-card"><img src="49.jpg" alt="Photo 49"></div>
+      <div class="photo-card"><img src="50.jpg" alt="Photo 50"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; leboispourtous — page <span id="page-num">1</span> / 8</p>
+  </footer>
+
+  <script>
+    let currentPage = 1;
+    const totalPages = 8;
+
+    function updatePage() {
+      for (let i = 1; i <= totalPages; i++) {
+        const page = document.getElementById(`page-${i}`);
+        if (page) page.classList.remove('active');
+      }
+      const activePage = document.getElementById(`page-${currentPage}`);
+      if (activePage) activePage.classList.add('active');
+
+      document.getElementById('page-num').textContent = currentPage;
+
+      const btnPrev = document.getElementById('btn-prev');
+      const btnNext = document.getElementById('btn-next');
+
+      btnPrev.disabled = (currentPage === 1);
+      btnNext.disabled = (currentPage === totalPages);
+
+      if (currentPage === 1) btnPrev.classList.add('disabled');
+      else btnPrev.classList.remove('disabled');
+
+      if (currentPage === totalPages) btnNext.classList.add('disabled');
+      else btnNext.classList.remove('disabled');
+    }
+
+    function changePage(direction) {
+      if (currentPage + direction >= 1 && currentPage + direction <= totalPages) {
+        currentPage += direction;
+        updatePage();
+      }
+    }
+
+    updatePage();
+  </script>
+
+</body>
+                                </html>
+
