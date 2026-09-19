@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Objectifs et Enjeux — Leboispourtous</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(rgba(20, 13, 10, 0.85), rgba(20, 13, 10, 0.85)), url('50.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    header {
+      background-color: rgba(30, 20, 15, 0.9);
+      text-align: center;
+      padding: 15px 10px;
+      border-bottom: 2px solid #3a2b22;
+    }
+    header h1 { font-size: 1.4em; color: #d1c2b5; }
+
+    main {
+      flex: 1;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 25px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(44, 34, 30, 0.75);
+      border: 1px solid #3a2b22;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      backdrop-filter: blur(4px);
+    }
+
+    .card h2 {
+      color: #d1c2b5;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #8b5a2b;
+      padding-bottom: 5px;
+    }
+
+    .card p {
+      font-size: 0.95em;
+      line-height: 1.6;
+      color: #e0d0c0;
+    }
+
+    .btn-retour {
+      display: inline-block;
+      align-self: center;
+      margin-top: 10px;
+      padding: 12px 24px;
+      background: linear-gradient(145deg, #8b5a2b, #6e4620);
+      color: #ffffff;
+      font-weight: bold;
+      text-decoration: none;
+      border: 2px solid #d1c2b5;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    footer {
+      background-color: rgba(20, 13, 10, 0.9);
+      color: #888;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.8em;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Leboispourtous — Nos Objectifs & Enjeux</h1>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Redonner vie au bois mort</h2>
+      <p>
+        Notre association œuvre pour la collecte, le recyclage et la revalorisation du bois mort à travers des créations artisanales. Nous transformons une ressource délaissée en objets durables et utiles.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Économie circulaire & Environnement</h2>
+      <p>
+        En nettoyant les parcelles et en valorisant le bois sur place ou en atelier, nous nous inscrivons au cœur de l'économie circulaire locale tout en préservant la santé des écosystèmes forestiers.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Sensibilisation & Partage</h2>
+      <p>
+        À travers nos chantiers et nos réalisations, nous sensibilisons le public à l'importance de la biodiversité forestière et à la transmission des savoir-faire artisanaux autour du travail du bois.
+      </p>
+    </section>
+
+    <a href="index.html" class="btn-retour">&larr; Retour à l'accueil</a>
+  </main>
+
+  <footer>
+    <p>&copy; leboispourtous</p>
+  </footer>
+
+</body>
+</html>
