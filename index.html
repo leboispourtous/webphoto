@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuto Bouton CSS avec effet Hover</title>
+    <style>
+        /* Centrage du bouton sur la page pour le test */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1e1e1e; /* Fond sombre comme dans Visual Studio Code */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* =================================================== */
+        /* LE CODE DE VOTRE BOUTON (À REPRENDRE DANS VOTRE CSS) */
+        /* =================================================== */
+
+        .btn {
+            background-color: transparent;
+            border: 2px solid red;
+            border-radius: 20px;
+            color: red;
+            cursor: pointer;
+            padding: 12px 24px; /* Proportion plus équilibrée que 20px partout */
+            text-decoration: none;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            display: inline-block;
+
+            /* Ligne 11 corrigée : ajout du "s" à 300ms pour que la transition fonctionne */
+            transition: background-color 300ms ease, color 300ms ease;
+        }
+
+        /* Lignes 14 à 17 : Effet au survol (Hover) */
+        .btn:hover {
+            color: #ffffff;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- La structure de votre bouton en HTML -->
+    <a href="#" class="btn">Mon Bouton</a>
+
+</body>
+</html>
