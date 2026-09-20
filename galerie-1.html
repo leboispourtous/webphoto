@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Galerie - Leboispourtous</title>
+    <style>
+        /* Réinitialisation de base */
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
+        
+        /* Conteneur principal plein écran fixe sans défilement avec l'image 18.jpg en fond */
+        html, body {
+            width: 100%; 
+            height: 100dvh; 
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            display: flex; 
+            flex-direction: column;
+            background: url('18.jpg') no-repeat center center;
+            background-size: cover;
+        }
+
+        /* En-tête */
+        header {
+            background-color: rgba(30, 20, 15, 0.85); 
+            text-align: center;
+            padding: 12px 10px; 
+            border-bottom: 2px solid #3a2b22; 
+            flex-shrink: 0;
+            backdrop-filter: blur(3px); 
+        }
+        
+        header h1 { 
+            font-size: 1.3em; 
+            color: #d1c2b5; 
+        }
+
+        /* Zone centrale de contenu */
+        main {
+            flex: 1; 
+            padding: 20px;
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            overflow: hidden;
+        }
+
+        /* Zone d'affichage du Diaporama */
+        .diaporama-container {
+            position: relative;
+            width: 100%;
+            max-width: 320px;
+            aspect-ratio: 1 / 1; /* Force un affichage carré parfait et élégant */
+            border-radius: 16px;
+            overflow: hidden;
+            border: 3px solid #d1c2b5;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+            background-color: rgba(20, 12, 8, 0.5);
+        }
+
+        /* Configuration des images superposées */
+        .diaporama-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            opacity: 0; /* Cachées par défaut */
+            
+            /* Durée totale du cycle pour 3 images à 5 secondes chacune = 15 secondes */
+            animation: defilementImages 15s infinite ease-in-out;
+        }
+
+        /* Synchronisation et décalage de 5 secondes pour chaque photo */
+        .photo-1 { animation-delay: 0s; }
+        .photo-2 { animation-delay: 5s; }
+        .photo-3 { animation-delay: 10s; }
+
+        /* Animation CSS de fondu enchaîné (Cycle de 15s total : 33.33% = 5s) */
+        @keyframes defilementImages {
+            0%, 5% { opacity: 0; transform: scale(1.02); }      /* Entrée progressive */
+            8%, 33.33% { opacity: 1; transform: scale(1); }     /* Affichée stable pendant 5 secondes */
+            36%, 100% { opacity: 0; }                           /* Sortie et masquage */
+        }
+
+        /* Barre de navigation basse */
+        .navigation-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            max-width: 280px;
+            flex-shrink: 0;
+        }
+
+        /* Boutons de navigation */
+        .btn-nav {
+            flex: 1;
+            padding: 12px 10px;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 0.95em;
+            text-decoration: none; 
+            border-radius: 20px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            text-align: center;
+            border: 1px solid #a65d21;
+            background: linear-gradient(145deg, #5c3a1a, #422812);
+            transition: all 0.2s ease;
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            border-color: #ffffff;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.8);
+        }
+
+        /* Pied de page */
+        footer {
+            background-color: rgba(20, 13, 10, 0.95); 
+            color: #aaa;
+            text-align: center; 
+            padding: 10px; 
+            font-size: 0.75em; 
+            flex-shrink: 0;
+            border-top: 1px solid rgba(122, 62, 16, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Galerie Photos - Leboispourtous</h1>
+    </header>
+
+    <main>
+        <!-- Conteneur du diaporama automatique -->
+        <div class="diaporama-container">
+            <!-- Insérez ici les trois images de votre choix que vous voulez faire défiler -->
+            <img src="1.jpg" alt="Réalisation 1" class="photo-1">
+            <img src="10.jpg" alt="Réalisation 2" class="photo-2">
+            <img src="11.jpg" alt="Réalisation 3" class="photo-3">
+        </div>
+        
+        <!-- Navigation pour revenir à l'accueil ou changer de page -->
+        <div class="navigation-bar">
+            <a href="index.html" class="btn-nav">Accueil</a>
+            <a href="objectifs.html" class="btn-nav">Objectifs</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; leboispourtous</p>
+    </footer>
+
+</body>
+</html>
