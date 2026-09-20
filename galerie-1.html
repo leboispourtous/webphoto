@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Galerie - Leboispourtous</title>
+    <style>
+        /* Réinitialisation complète */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html, body { 
+            width: 100%; 
+            height: 100dvh; 
+            overflow: hidden; 
+            font-family: 'Segoe UI', sans-serif; 
+            color: #ffffff; 
+            display: flex; 
+            flex-direction: column; 
+            background-color: #1e140f; 
+        }
+        
+        header { 
+            background-color: rgba(30, 20, 15, 0.95); 
+            text-align: center; 
+            padding: 12px 10px; 
+            border-bottom: 2px solid #3a2b22; 
+            flex-shrink: 0; 
+        }
+        
+        header h1 { font-size: 1.3em; color: #ffffff; }
+        
+        main { 
+            flex: 1; 
+            padding: 10px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 10px; 
+            overflow: hidden; 
+        }
+        
+        .navigation-bar { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            gap: 10px; 
+            width: 100%; 
+        }
+        
+        .btn-nav { 
+            flex: 1; 
+            padding: 12px 10px; 
+            color: #ffffff; 
+            font-weight: bold; 
+            font-size: 0.95em; 
+            text-decoration: none; 
+            border-radius: 6px; 
+            border: 2px solid #ffffff; 
+            background: #6e4620; 
+            transition: all 0.2s ease; 
+            text-align: center; 
+            cursor: pointer;
+        }
+        
+        /* Grille photo fixe à 2 colonnes et 3 lignes */
+        .photo-grid { 
+            flex: 1; 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            grid-template-rows: repeat(3, 1fr); 
+            gap: 8px; 
+            overflow: hidden; 
+        }
+        
+        /* Style des images carrées parfaites avec transition de fondu douce */
+        .photo-grid img { 
+            width: 100%; 
+            height: 100%; 
+            aspect-ratio: 1 / 1; 
+            object-fit: cover; 
+            border-radius: 4px; 
+            opacity: 1;
+            transition: opacity 0.4s ease-in-out;
+        }
+        
+        footer { 
+            background-color: rgba(20, 13, 10, 0.95); 
+            color: #d1c2b5; 
+            text-align: center; 
+            padding: 10px; 
+            font-size: 0.85em; 
+            flex-shrink: 0; 
+            border-top: 1px solid rgba(122, 62, 16, 0.3); 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Lecteur audio unique et permanent -->
+    <audio id="monLecteur" src="musique.mp3" loop></audio>
+
+    <header>
+        <h1>Galerie Photos</h1>
+    </header>
+
+    <main>
+        <div class="navigation-bar">
+            <a href="index.html" class="btn-nav">&larr; Accueil</a>
+            <div class="btn-nav" id="btnSuivant">Suivant &rarr;</div>
+        </div>
+
+        <!-- La grille d'images dynamique -->
+        <div class="photo-grid" id="grilleImages">
+            <img><img><img><img><img><img>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; leboispourtous &mdash; <span id="numPage">page 1/8</span></p>
+    </footer>
+
+    <script>
+        // Centralisation stricte de vos 49 photos d'après l'ordre exact de vos fichiers
+        const toutesLesPages = [
+            ["2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg"],         // Page 1
+            ["8.jpg", "9.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg"],     // Page 2
+            ["14.jpg", "15.jpg", "16.jpg", "17.jpg", "18.jpg", "19.jpg"],   // Page 3
+            ["20.jpg", "21.jpg", "22.jpg", "23.jpg", "24.jpg", "25.jpg"],   // Page 4
+            ["26.jpg", "27.jpg", "28.jpg", "29.jpg", "30.jpg", "31.jpg"],   // Page 5
+            ["32.jpg", "33.jpg", "34.jpg", "35.jpg", "36.jpg", "37.jpg"],   // Page 6
+            ["38.jpg", "39.jpg", "40.jpg", "41.jpg", "42.jpg", "43.jpg"],   // Page 7
+            ["44.jpg", "45.jpg", "46.jpg", "47.jpg", "48.jpg", "49.jpg", "50.jpg"] // Page 8
+        ];
+
+        let pageActuelle = 0;
+        const balisesImg = document.querySelectorAll('#grilleImages img');
+        const textePage = document.getElementById('numPage');
+        const audio = document.getElementById('monLecteur');
+
+        // Continuer la lecture fluide si le son est activé
+        if(localStorage.getItem('musicPlaying') === 'true') {
+            audio.currentTime = localStorage.getItem('musicTime') || 0;
+            audio.play().catch(() => {});
+        }
+        setInterval(() => { if(!audio.paused) { localStorage.setItem('musicTime', audio.currentTime); } }, 500);
+
+        // Changement dynamique des photos dans le conteneur unique
+        function afficherPage(index) {
+            pageActuelle = index;
+            const listePhotos = toutesLesPages[pageActuelle];
+            
+            balisesImg.forEach((img, i) => {
+                img.style.opacity = 0;
+                setTimeout(() => {
+                    if (listePhotos[i]) {
+                        img.src = listePhotos[i];
+                        img.style.display = "block";
+                    } else {
+                        img.style.display = "none";
+                    }
+                    img.style.opacity = 1;
+                }, 400);
+            });
+            
+            textePage.textContent = `page ${pageActuelle + 1}/8`;
+        }
+
+        // Défilement automatique régulier toutes les 5 secondes
+        let horlogeAuto = setInterval(() => {
+            afficherPage((pageActuelle + 1) % toutesLesPages.length);
+        }, 5000);
+
+        // Interaction manuelle sur le bouton "Suivant"
+        document.getElementById('btnSuivant').addEventListener('click', () => {
+            clearInterval(horlogeAuto);
+            afficherPage((pageActuelle + 1) % toutesLesPages.length);
+            horlogeAuto = setInterval(() => {
+                afficherPage((pageActuelle + 1) % toutesLesPages.length);
+            }, 5000);
+        });
+
+        // Lancement immédiat de la page 1
+        afficherPage(0);
+    </script>
+</body>
+</html>
