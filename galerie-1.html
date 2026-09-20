@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Galerie - Leboispourtous</title>
+    <style>
+        /* Réinitialisation complète */
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
+        
+        /* Conteneur principal fixe sans défilement avec fond sombre */
+        html, body {
+            width: 100%; 
+            height: 100dvh; 
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            display: flex; 
+            flex-direction: column;
+            background-color: #1e140f;
+        }
+
+        /* En-tête */
+        header {
+            background-color: rgba(30, 20, 15, 0.95); 
+            text-align: center;
+            padding: 15px 10px; 
+            border-bottom: 2px solid #3a2b22; 
+            flex-shrink: 0;
+            backdrop-filter: blur(3px); 
+        }
+        
+        header h1 { 
+            font-size: 1.3em; 
+            color: #d1c2b5; 
+        }
+
+        /* Contenu central */
+        main {
+            flex: 1; 
+            padding: 15px;
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            overflow: hidden;
+        }
+
+        /* Cadre du Diaporama : Agrandi pour mobile (90% de la largeur) sans faire du plein écran géant */
+        .diaporama-container {
+            position: relative;
+            width: 90%;
+            max-width: 450px; /* Limite la taille pour que ce soit élégant */
+            aspect-ratio: 4 / 3; /* Format photo standard, idéal pour vos images d'atelier */
+            border-radius: 16px;
+            overflow: hidden;
+            border: 3px solid #d1c2b5;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+            background-color: #2c221e; 
+        }
+
+        /* Style des images du carrousel */
+        .diaporama-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ajuste proprement la photo dans son cadre */
+            opacity: 0; 
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .diaporama-container img.active {
+            opacity: 1;
+        }
+
+        /* Barre de navigation avec les boutons */
+        .navigation-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            max-width: 280px;
+            flex-shrink: 0;
+        }
+
+        /* Boutons Accueil et Objectifs */
+        .btn-nav {
+            flex: 1;
+            padding: 12px 10px;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 0.95em;
+            text-decoration: none; 
+            border-radius: 20px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            text-align: center;
+            border: 1px solid #a65d21;
+            background: linear-gradient(145deg, #5c3a1a, #422812);
+            transition: all 0.2s ease;
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            border-color: #ffffff;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.8);
+        }
+
+        /* Pied de page */
+        footer {
+            background-color: rgba(20, 13, 10, 0.95); 
+            color: #aaa;
+            text-align: center; 
+            padding: 10px; 
+            font-size: 0.75em; 
+            flex-shrink: 0;
+            border-top: 1px solid rgba(122, 62, 16, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Galerie Photos - Leboispourtous</h1>
+    </header>
+
+    <main>
+        <!-- Diaporama central avec de superbes proportions adaptées -->
+        <div class="diaporama-container">
+            <img src="10.jpg" alt="Création 1" class="active">
+            <img src="5.jpg" alt="Création 2">
+            <img src="6.jpg" alt="Création 3">
+        </div>
+        
+        <!-- Boutons de navigation bas -->
+        <div class="navigation-bar">
+            <a href="index.html" class="btn-nav">Accueil</a>
+            <a href="objectifs.html" class="btn-nav">Objectifs</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; leboispourtous</p>
+    </footer>
+
+    <!-- Script de rotation fluide de 5 secondes -->
+    <script>
+        const images = document.querySelectorAll('.diaporama-container img');
+        let indexActuel = 0;
+
+        function changerImage() {
+            images[indexActuel].classList.remove('active');
+            indexActuel = (indexActuel + 1) % images.length;
+            images[indexActuel].classList.add('active');
+        }
+
+        setInterval(changerImage, 5000);
+    </script>
+
+</body>
+</html>
